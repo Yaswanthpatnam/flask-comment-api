@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.db
+instance/
+myvenv311/
+.env
