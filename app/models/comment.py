@@ -1,6 +1,6 @@
 from app import db
 
-# creating db model (formating data where and how to store)
+# Creating db model (formating data where and how to store)
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     task_id = db.Column(db.Integer, nullable = False)

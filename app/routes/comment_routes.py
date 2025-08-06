@@ -62,3 +62,33 @@ def update_comment(comment_id):
             "content": comment.content
         }
     }), 200
+    
+# Route to delete a comment
+@comment_bp.route('/comments/<int:comment_id>', methods=["DELETE"])
+def delete_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+
+    if not comment:
+        return jsonify({"error": "Comment not found"}), 404
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    return jsonify({"message": f"Comment with ID {comment_id} deleted successfully"}), 200
+
+# Route to get all comments
+@comment_bp.route('/comments', methods=["GET"])
+def get_comments():
+    comments = Comment.query.all()
+
+    all_comments = [
+        {
+            "id": comment.id,
+            "task_id": comment.task_id,
+            "content": comment.content
+        } for comment in comments
+    ]
+
+    return jsonify({
+        "comments": all_comments
+    }), 200
