@@ -1,19 +1,95 @@
-<!-- Title -->
+# Flask Comment API
 
-FLASK COMMENT API
+A lightweight backend API built with **Flask** and **SQLAlchemy** for managing comments linked to tasks.  
+It has **no frontend buttons or pages** — you interact with it by sending HTTP requests (e.g., via Postman or cURL).
+
+---
+
+## Features
+
+- Add, edit, delete, and view all comments.
+- Built using Flask 
+Framework.
+- SQLite database for storage.
+- Automated testing using **PyTest**.
+- Easy to test with **Postman** or command-line tools like `cURL`.
+
+---
+
+## Installation & Setup
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/Yaswanthpatnam/flask-comment-api.git
+cd flask-comment-api
+
+---
+
+### 2️⃣ Create and activate a virtual environment
+
+# Create virtual environment
+python -m venv venv
+
+# Activate it
+# On Windows
+venv\Scripts\activate
+
+# On macOS/Linux
+source venv/bin/activate
+
+### 3️⃣ Install dependencies
+
+pip install -r requirements.txt
 
 
-<!-- Goal of the Web APP -->
+### 4️⃣ Run the server
 
-> Its a simple RESTful API built with FLask and SQLAlchemy to manage comments related to tasks
+python run.py
 
 
-<!-- FEATURES OF "FLASK COMMENT API" -->
+### 5️⃣ Server start location
 
-> Comment is nothing but a minor task related to task
-> User can add a comment
-> User can edit a comment
-> User can delete a comment
-> User can retrieve all comments
->Without testing manually developed "AUTOMATED TESTING USING pytest"
+http://127.0.0.1:5000/
+
+--- 
+
+### How to Use – API Routes
+Use Postman or curl to test the following endpoints.
+
+# Get all comments
+GET /comments
+
+# Add a new comment
+
+POST /comments
+
+{
+    "task_id": 1,
+    "content": "This is a new comment"
+  
+}
+
+# Edit/update a comment
+
+PUT /comments/<id>
+
+{
+    "content": "Updated comment content"
+}
+
+# Delete a comment
+
+DELETE /comments/<id>
+
+---
+
+### Testing
+
+# Install PyTest
+
+pip install pytest
+
+# Run tests
+
+pytest
 
