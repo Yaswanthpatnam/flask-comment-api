@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 # defining SQLALCHEMY
@@ -23,7 +23,10 @@ def create_app():
     
     with app.app_context():
         db.create_all()
-       
+    
+    @app.route("/health", methods=["GET"])
+    def health():
+        return jsonify({"status": "ok"}), 200       
        
     return app    
 
