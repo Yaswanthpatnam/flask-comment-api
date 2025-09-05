@@ -1,95 +1,77 @@
 # Flask Comment API
 
-A lightweight backend API built with **Flask** and **SQLAlchemy** for managing comments linked to tasks.  
-It has **no frontend buttons or pages** — you interact with it by sending HTTP requests (e.g., via Postman or cURL).
-
----
+A lightweight RESTful API for managing comments, built with Flask and SQLAlchemy. Interact with it using tools like Postman, Thunder Client, or Insomnia.
 
 ## Features
+✅ Create, read, update, and delete comments
 
-- Add, edit, delete, and view all comments.
-- Built using Flask 
-Framework.
-- SQLite database for storage.
-- Automated testing using **PyTest**.
-- Easy to test with **Postman** or command-line tools like `cURL`.
+✅ Filter comments by task ID
 
----
+✅ SQLite database with SQLAlchemy ORM
 
-## Installation & Setup
+✅ Comprehensive testing with pytest
 
-### 1️⃣ Clone the repository
-```bash
-git clone https://github.com/Yaswanthpatnam/flask-comment-api.git
+
+##  Installation & Setup
+
+## Clone the repo and navigate to it
+
+git clone <https://github.com/Yaswanthpatnam/flask-comment-api>
 cd flask-comment-api
 
----
-
-### 2️⃣ Create and activate a virtual environment
-
-# Create virtual environment
+## Create and activate a virtual environment
 python -m venv venv
-
-# Activate it
-# On Windows
+#### On Windows:
 venv\Scripts\activate
-
-# On macOS/Linux
+#### On macOS/Linux:
 source venv/bin/activate
 
-### 3️⃣ Install dependencies
-
+##  Install dependencies
 pip install -r requirements.txt
 
-
-### 4️⃣ Run the server
-
+### Run the server
 python run.py
+Server URL: http://localhost:5000
 
+## Test with Postman/Thunder Client
+Once the server is running, open your API client and try these requests:
 
-### 5️⃣ Server start location
+#### Action	Method	URL	Body (Raw JSON)  
+##### Create Comment "POST"	 - http://localhost:5000/api/comments	
 
-http://127.0.0.1:5000/
+    {
+     "task_id": 1, "content": "My first comment" 
+    }
+##### Get All Comments "GET" - http://localhost:5000/api/comments
 
---- 
+##### Get One Comment "GET" - http://localhost:5000/api/comments/1
 
-### How to Use – API Routes
-Use Postman or curl to test the following endpoints.
+##### Update Comment "PUT" - http://localhost:5000/api/comments/1	
 
-# Get all comments
-GET /comments
+    { 
+        "content": "Updated text" 
+    }
 
-# Add a new comment
+##### Delete Comment "DELETE" - http://localhost:5000/api/comments/1
 
-POST /comments
+### API Endpoint Reference
+All endpoints are prefixed with: http://localhost:5000/api
 
-{
-    "task_id": 1,
-    "content": "This is a new comment"
-  
-}
+Endpoint	Method	Description
+- /health	GET	Check if the API is running.
+- /comments	POST	Create a new comment. Requires task_id and content.
+- /comments	GET	Get a list of all comments.
+- /comments?task_id=1	GET	Filter: Get comments for a specific task.
+- /comments/id	GET	Get a single comment by its ID.
+- /comments/id	PUT	Update a comment's content.
+- /comments/id	DELETE	Delete a comment by its ID.
 
-# Edit/update a comment
+## Running Tests
 
-PUT /comments/<id>
+To ensure everything works, run the test suite:
 
-{
-    "content": "Updated comment content"
-}
-
-# Delete a comment
-
-DELETE /comments/<id>
-
----
-
-### Testing
-
-# Install PyTest
-
+### Install pytest if you haven't
 pip install pytest
 
-# Run tests
-
-pytest
-
+### Run the tests
+pytest -v
